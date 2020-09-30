@@ -7,6 +7,7 @@ fun main() {
     println("¡BIENVENIDOS A MORIA!")
     // Declaramos la clase principal
     val moria: Moria = Moria()
-    moria.run()
+    // moria.run()
+    moria.test()
     println("FIN")
 }
