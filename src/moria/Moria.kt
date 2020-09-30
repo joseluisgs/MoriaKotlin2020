@@ -6,6 +6,9 @@ import moria.objetos.Vara
 import moria.peligros.Accion
 import moria.peligros.Habilidad
 import moria.peligros.Magico
+import moria.personajes.Elfo
+import moria.personajes.Hobbit
+import moria.personajes.Mago
 import moria.personajes.Personaje
 import moria.salas.Sala
 import kotlin.random.Random
@@ -81,6 +84,20 @@ object Moria {
         legolas.objeto.test()
         frodo.test()
         frodo.objeto.test()
+
+        val mago = Mago("El Mago", vivo = true, Vara())
+        mago.test()
+        mago.recargarVara(20)
+        mago.objeto.test()
+        val elfo = Elfo("El Elfo", vivo = true, Carcaj())
+        elfo.test()
+        elfo.recargarCarcaj(10)
+        elfo.objeto.test()
+        val hobbit = Hobbit("El Hobbit", vivo = true, Anillo())
+        hobbit.test()
+        hobbit.ponerseAnillo()
+        hobbit.objeto.test()
+
 
         salas.forEach {
             it.test();
