@@ -3,6 +3,8 @@ package moria
 import moria.objetos.Anillo
 import moria.objetos.Carcaj
 import moria.objetos.Vara
+import moria.personajes.Elfo
+import moria.personajes.Mago
 import moria.personajes.Personaje
 import kotlin.random.Random
 
@@ -42,5 +44,15 @@ object Moria {
         legolas.objeto.test()
         frodo.test()
         frodo.objeto.test()
+
+        val mago: Mago = Mago("El Mago", vivo = true, Vara())
+        mago.test()
+        mago.recargarVara(20)
+        mago.objeto.test()
+        val elfo: Elfo = Elfo("El Elfo", vivo = true, Carcaj())
+        elfo.test()
+        elfo.recargarCarcaj(10)
+        elfo.objeto.test()
+
     }
 }
