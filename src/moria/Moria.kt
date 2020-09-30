@@ -17,12 +17,12 @@ import kotlin.random.Random
 // https://blog.mindorks.com/how-to-create-a-singleton-class-in-kotlin
 object Moria {
     // Constantes del sistema
-    private val MAX_ENERGIA: Int = 50
-    private val MAX_FLECHAS: Int = 20
-    private val MAX_SALAS: Int = 36
-    private val MAX_SALA_MALIGNO: Int = 10
-    private val MAX_SALA_FLECHAS: Int = 10
-    private val MAX_SALA_ENEMIGOS: Int = 10
+    private const val MAX_ENERGIA: Int = 50
+    private const val MAX_FLECHAS: Int = 20
+    private const val MAX_SALAS: Int = 36
+    private const val MAX_SALA_MALIGNO: Int = 10
+    private const val MAX_SALA_FLECHAS: Int = 10
+    private const val MAX_SALA_ENEMIGOS: Int = 10
 
     // Variables de Moria, con lateint indicamos que las inicializaremos fuera del int o de la declaracion
     // Personajes
@@ -71,7 +71,7 @@ object Moria {
     }
 
     // función de ejecución
-    public fun run() {
+    fun run() {
         println("Moria--> Ejecutandose")
     }
 
@@ -100,7 +100,7 @@ object Moria {
 
 
         salas.forEach {
-            it.test();
+            it.test()
             it.peligro.test()
         }
     }

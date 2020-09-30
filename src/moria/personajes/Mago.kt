@@ -12,4 +12,5 @@ class Mago(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
     override fun poderVara(): Int {
         return (this.objeto as Vara).energia
     }
+
 }

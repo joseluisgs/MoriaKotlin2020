@@ -9,4 +9,5 @@ open class Personaje(val nombre: String, var vivo: Boolean = true, var objeto: O
     fun test() {
         println("Soy: $nombre ¿Estoy vivo?: $vivo y mi objeto es: ${objeto.tipo}")
     }
+
 }
