@@ -6,7 +6,7 @@ import moria.Moria
 fun main() {
     println("¡BIENVENIDOS A MORIA!")
     // Declaramos la clase principal, usando singleton
-    Moria.test()
-    // moria.run()
+    //Moria.test()
+    Moria.run()
     println("FIN")
 }
