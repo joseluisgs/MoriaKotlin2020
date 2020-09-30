@@ -5,9 +5,8 @@ import moria.Moria
 
 fun main() {
     println("¡BIENVENIDOS A MORIA!")
-    // Declaramos la clase principal
-    val moria: Moria = Moria()
+    // Declaramos la clase principal, usando singleton
+    Moria.test()
     // moria.run()
-    moria.test()
     println("FIN")
 }
