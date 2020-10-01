@@ -9,6 +9,7 @@ abstract class Personaje(val nombre: String, var vivo: Boolean = true, var objet
     private val PROB_HUIR = 80
 
     abstract fun accion(peligro: Peligro): Boolean
+
     fun huir(): Boolean {
         println("--> Intentando huir :(")
         val sorteo = Utils.probabilidad(PROB_HUIR, 100)

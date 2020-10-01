@@ -17,12 +17,12 @@ class Hobbit(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, 
         (this.objeto as Anillo).puesto = false
     }
 
-    fun decidir(): Boolean {
+    private fun decidir(): Boolean {
         println("--> $nombre toma una decisión")
         return Utils.probabilidad(50, 100)
     }
 
-    fun superarPeligroHabilidad(limite: Int): Boolean {
+    private fun superarPeligroHabilidad(limite: Int): Boolean {
         val superar = Utils.probabilidad(limite, 100)
         if (superar) {
             this.quitarseAnillo()

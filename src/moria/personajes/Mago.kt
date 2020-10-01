@@ -17,7 +17,7 @@ class Mago(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
         return (this.objeto as Vara).energia
     }
 
-    fun ganar(limite: Int): Boolean {
+    private fun ganar(limite: Int): Boolean {
         println("--> $nombre intenta ganar al peligro :(")
         val ganar = Utils.probabilidad(limite, 100)
         // Si ganamos peligro superado

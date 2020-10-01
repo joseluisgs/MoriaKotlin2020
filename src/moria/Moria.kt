@@ -20,10 +20,10 @@ object Moria {
     // Constantes del sistema.
     // Parametrización
     private const val MAX_ENERGIA = 30
-    private const val MAX_FLECHAS = 20
+    private const val MAX_FLECHAS = 10
     private const val MAX_SALAS = 36
     private const val MAX_SALA_MALIGNO = 10
-    private const val MAX_SALA_FLECHAS = 10
+    private const val MAX_SALA_FLECHAS = 5
     private const val MAX_SALA_ENEMIGOS = 10
 
     // Condiciones del run
@@ -55,7 +55,7 @@ object Moria {
     private fun initPersonajes() {
         // Como vemos estamos realizando una inyección de dependencias usando agragaciones con objetos asbtractos
         gandalf = Mago("Gandalf", true, Vara(energia = MAX_ENERGIA))
-        legolas = Elfo("Legolas", true, Carcaj(cantidad = Random.nextInt(1, MAX_FLECHAS)))
+        legolas = Elfo("Legolas", true, Carcaj(cantidad = MAX_FLECHAS))
         frodo = Hobbit(nombre = "Frodo", vivo = true, objeto = Anillo())
     }
 
@@ -69,7 +69,7 @@ object Moria {
                     Sala(
                         i,
                         Accion(
-                            flechas = Random.nextInt(1, MAX_SALA_FLECHAS),
+                            flechas = Random.nextInt(0, MAX_SALA_FLECHAS),
                             enemigos = Random.nextInt(1, MAX_SALA_ENEMIGOS)
                         )
                     )
