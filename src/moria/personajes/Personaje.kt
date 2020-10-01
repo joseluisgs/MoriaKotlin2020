@@ -8,7 +8,20 @@ open class Personaje(val nombre: String, var vivo: Boolean = true, var objeto: O
     private val PROB_HUIR = 80
 
     fun huir(): Boolean {
-        return Utils.probabilidad(80, 100)
+        val sorteo = Utils.probabilidad(PROB_HUIR, 100)
+        if (sorteo) {
+            println("--> Hemos tenido suerte y podemos huir :)")
+            return true
+        } else {
+            println("--> No hemos tenido suerte y no podemos huir :_(")
+            vivo = false
+            return false
+        }
+    }
+
+    fun peligroSuperado(): Boolean {
+        println("--> $nombre ha superado el peligro. ¡Continuamos! :)")
+        return true
     }
 
     // Función de test
