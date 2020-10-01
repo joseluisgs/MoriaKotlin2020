@@ -2,6 +2,7 @@ package moria.personajes
 
 import moria.objetos.Anillo
 import moria.objetos.Objeto
+import moria.peligros.Peligro
 import moria.utils.Utils
 
 class Hobbit(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vivo, objeto), SoyHobbit {
@@ -32,7 +33,7 @@ class Hobbit(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, 
         }
     }
 
-    override fun accion(): Boolean {
+    override fun accion(peligro: Peligro): Boolean {
         println("--> $nombre entra en acción")
         // Tomamos una decisión (50%)
         val decision = this.decidir()

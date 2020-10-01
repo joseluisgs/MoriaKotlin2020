@@ -19,7 +19,7 @@ import kotlin.random.Random
 object Moria {
     // Constantes del sistema.
     // Parametrización
-    private const val MAX_ENERGIA = 50
+    private const val MAX_ENERGIA = 30
     private const val MAX_FLECHAS = 20
     private const val MAX_SALAS = 36
     private const val MAX_SALA_MALIGNO = 10
@@ -54,7 +54,7 @@ object Moria {
     // Inicia los personajes
     private fun initPersonajes() {
         // Como vemos estamos realizando una inyección de dependencias usando agragaciones con objetos asbtractos
-        gandalf = Mago("Gandalf", true, Vara(energia = Random.nextInt(1, MAX_ENERGIA)))
+        gandalf = Mago("Gandalf", true, Vara(energia = MAX_ENERGIA))
         legolas = Elfo("Legolas", true, Carcaj(cantidad = Random.nextInt(1, MAX_FLECHAS)))
         frodo = Hobbit(nombre = "Frodo", vivo = true, objeto = Anillo())
     }
@@ -96,9 +96,9 @@ object Moria {
     private fun analizarActuar(): Boolean {
         // Podemos usar el casting con la variable tipo pero mejor hacemos casting
         when (this.salaActual.peligro) {
-            is Magico -> return accionMago()
-            is Accion -> return accionElfo()
-            is Habilidad -> return frodo.accion()
+            is Magico -> return gandalf.accion(this.salaActual.peligro)
+            is Accion -> return legolas.accion(this.salaActual.peligro)
+            is Habilidad -> return frodo.accion(this.salaActual.peligro)
             else -> return TERMINAR
         }
     }
