@@ -13,4 +13,8 @@ class Elfo(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
         (this.objeto as Carcaj).cantidad += flechas
     }
 
+    override fun accion(): Boolean {
+        return true
+    }
+
 }

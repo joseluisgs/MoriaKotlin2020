@@ -98,25 +98,8 @@ object Moria {
         when (this.salaActual.peligro) {
             is Magico -> return accionMago()
             is Accion -> return accionElfo()
-            is Habilidad -> return accionHobbit()
+            is Habilidad -> return frodo.accion()
             else -> return TERMINAR
-        }
-    }
-
-    private fun accionHobbit(): Boolean {
-        println("--> ${frodo.nombre} entra en acción")  // quitar
-        // Tomamos una decisión (50%)
-        val decision = (frodo as Hobbit).decidir()
-        if (decision) {
-            println("--> ${frodo.nombre} decide no ponerse el anillo")
-            // Nos ponemos el anillo
-            (frodo as Hobbit).ponerseAnillo()
-            // Lo superamos el 90% de los casos
-            return (frodo as Hobbit).superarPeligroHabilidad(90)
-        } else {
-            println("--> ${frodo.nombre} decide no ponerse el anillo")
-            // Solo lo superamos en el 20% de los casos
-            return (frodo as Hobbit).superarPeligroHabilidad(20)
         }
     }
 

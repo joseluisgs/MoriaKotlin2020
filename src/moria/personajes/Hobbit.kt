@@ -32,4 +32,21 @@ class Hobbit(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, 
         }
     }
 
+    override fun accion(): Boolean {
+        println("--> $nombre entra en acción")
+        // Tomamos una decisión (50%)
+        val decision = this.decidir()
+        if (decision) {
+            println("--> $nombre decide no ponerse el anillo")
+            // Nos ponemos el anillo
+            this.ponerseAnillo()
+            // Lo superamos el 90% de los casos
+            return this.superarPeligroHabilidad(90)
+        } else {
+            println("--> $nombre decide no ponerse el anillo")
+            // Solo lo superamos en el 20% de los casos
+            return this.superarPeligroHabilidad(20)
+        }
+    }
+
 }

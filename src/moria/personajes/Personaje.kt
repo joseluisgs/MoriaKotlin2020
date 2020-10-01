@@ -4,9 +4,10 @@ import moria.objetos.Objeto
 import moria.utils.Utils
 
 // Definimos la clase de personaje. Es open porque podemos instanciarla y heredar
-open class Personaje(val nombre: String, var vivo: Boolean = true, var objeto: Objeto) {
+abstract class Personaje(val nombre: String, var vivo: Boolean = true, var objeto: Objeto) {
     private val PROB_HUIR = 80
 
+    abstract fun accion(): Boolean
     fun huir(): Boolean {
         val sorteo = Utils.probabilidad(PROB_HUIR, 100)
         if (sorteo) {

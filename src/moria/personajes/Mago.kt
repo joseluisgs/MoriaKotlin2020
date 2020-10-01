@@ -13,4 +13,8 @@ class Mago(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
         return (this.objeto as Vara).energia
     }
 
+    override fun accion(): Boolean {
+        return true
+    }
+
 }
