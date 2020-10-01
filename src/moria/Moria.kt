@@ -15,6 +15,7 @@ import kotlin.random.Random
 
 // Definimos Moria como Object y de esta manera implementamos el singleton
 // https://blog.mindorks.com/how-to-create-a-singleton-class-in-kotlin
+// https://refactoring.guru/es/design-patterns/singleton
 object Moria {
     // Constantes del sistema.
     // Parametrización
@@ -106,7 +107,7 @@ object Moria {
         println("--> ${frodo.nombre} entra en acción") // Quitar
         println("--> ${frodo.nombre} toma una decisión")
         // Tomamos una decisión (50%)
-        val decision = probabilidad(50, 100)
+        val decision = (frodo as Hobbit).decidir()
         if (decision) {
             println("--> ${frodo.nombre} decide ponerse el anillo")
             (frodo as Hobbit).ponerseAnillo()
@@ -120,13 +121,13 @@ object Moria {
     }
 
     private fun superarPeligroHabilidad(limite: Int): Boolean {
-        val superar = probabilidad(limite, 100)
+        val superar = (frodo as Hobbit).superarPeligro(limite)
         if (superar) {
             (frodo as Hobbit).quitarseAnillo()
             return peligroSuperado(frodo)
         } else {
             println("--> ${frodo.nombre} no ha superado el peligro :(")
-            return huir()
+            return huir(frodo)
         }
     }
 
@@ -152,22 +153,15 @@ object Moria {
         println("-->Entrando en la sala nº: ${this.salaActual.numero}. Es del tipo: ${this.salaActual.peligro.tipo}")
     }
 
-    private fun huir(): Boolean {
+    private fun huir(personaje: Personaje): Boolean {
         // solo huimos el 80% de las veces
-        val sorteo = probabilidad(80, 100)
+        val sorteo = personaje.huir()
         if (sorteo) {
             println("--> Uff, podemos huir a otra sala :)")
             return CONTINUAR
         } else {
             return TERMINAR
         }
-    }
-
-    // Función auxiliar de probabilidad
-    private fun probabilidad(limite: Int, max: Int): Boolean {
-        val sorteo = Random.nextInt(max)
-        println("probabilid $sorteo y mi limite es $limite")
-        return sorteo <= limite
     }
 
     // funcion de test
