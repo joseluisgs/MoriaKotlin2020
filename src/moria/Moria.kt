@@ -12,6 +12,8 @@ import moria.personajes.Mago
 import moria.personajes.Personaje
 import moria.salas.Sala
 import java.io.File
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
 // Definimos Moria como Object y de esta manera implementamos el singleton
@@ -93,7 +95,7 @@ object Moria {
 
     // función de ejecución
     fun run() {
-        println("Abriendo las puertas de Moria")
+        presentacion()
         // mientras haya salas o no hayamos terminado
         while (salas.size >= 1 && estado == VIVOS) {
             // entramos en la sala
@@ -102,7 +104,7 @@ object Moria {
             estado = analizarActuar()
         }
         // Imprimimos el informe
-        informe()
+        informeFinal()
     }
 
     private fun analizarActuar(): Boolean {
@@ -119,18 +121,32 @@ object Moria {
         // Eliminamos como la primera porque es una estructura FIFO, 
         this.salaActual = salas.desencolar()
         println("*** Entrando en la sala nº: ${this.salaActual.numero}. Es del tipo: ${this.salaActual.peligro.tipo}")
-        File("salas.txt").writeText(salaActual.toString())
     }
 
-    private fun informe() {
+    fun presentacion() {
+        val dateTime = LocalDateTime.now()
+        val momento = dateTime.format(DateTimeFormatter.ofPattern("dd/M/y H:m:ss"))
+        val mensaje = "*** ABRIENDO LAS PUERTAS DE MORIA ***"
+        println(mensaje)
+        println()
+        File("moria.txt").appendText("$mensaje el $momento\n")
+    }
+
+    private fun informeFinal() {
+        val dateTime = LocalDateTime.now()
+        val momento = dateTime.format(DateTimeFormatter.ofPattern("dd/M/y H:m:ss"))
         println("--------------")
+        var mensaje: String
         if (estado == this.VIVOS) {
-            println("--> NUESTROS HEROES HAS SUPERADO LOS PELIGROS DE MORIA :)")
-            println("--> NUEVOS PELIGROS LES AGUARDAN :)")
+            mensaje = "--> NUESTROS HEROES HAS SUPERADO LOS PELIGROS DE MORIA :)\n"
+            mensaje += "--> NUEVOS PELIGROS LES AGUARDAN :)\n"
         } else {
-            println("--> NUESTROS HEROES HAN CAIDO EN MORIA :__(")
-            println("--> NO HAN PODIDO PASAR DE LA SALA: ${salaActual.numero}")
+            mensaje = "--> NUESTROS HEROES HAN CAIDO EN MORIA :__(\n"
+            mensaje += "--> NO HAN PODIDO PASAR DE LA SALA: ${salaActual.numero}\n"
         }
+        mensaje += "*** CERRANDO LAS PUERTAS DE MORIA ***"
+        println(mensaje)
+        File("moria.txt").appendText("$mensaje el $momento\n\n", Charsets.UTF_8)
     }
 
     // funcion de test
