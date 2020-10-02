@@ -5,6 +5,18 @@
 [![Kotlin](https://img.shields.io/badge/Code-Kotlin-blue)](https://kotlinlang.org/)
 [![LISENCE](https://img.shields.io/badge/Lisence-MIT-red)]()
 
+## Descripción
+Se ha implementado el problema de una de las muchas formas posibles y además aplicando distintas técnicas con Kotlin.
+Debes tener en cuenta que se puede hacer de diferente manera y algunas cosas están realizadas así para que didáticamente te pueda mostrar algo:
+* Patrones
+* Inyección de dependencias
+* Herencia
+* Polimorfismo
+* Funciones de extensión
+* Funciones Lambda
+* TDA
+* Clases POJO
+* etc.
 ## Autor
 
 - [José Luis González Sánchez](https://twitter.com/joseluisgonsan) ![Twitter](https://img.shields.io/twitter/follow/joseluisgonsan?style=social)

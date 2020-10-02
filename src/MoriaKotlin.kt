@@ -4,9 +4,12 @@
 import moria.Moria
 
 fun main() {
-    println("¡BIENVENIDOS A MORIA!")
+    println("*** ¡BIENVENIDOS A MORIA! ***")
+    println()
     // Declaramos la clase principal, usando singleton
-    Moria.test()
-    // moria.run()
-    println("FIN")
+    // https://refactoring.guru/es/design-patterns/singleton
+    //Moria.test()
+    Moria.run()
+    println()
+    println("*** FIN ***")
 }

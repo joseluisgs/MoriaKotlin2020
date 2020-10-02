@@ -1,8 +1,8 @@
 package moria.salas
 
 import moria.peligros.Peligro
-
-class Sala(var numero: Int = 1, var peligro: Peligro) {
+// una vez asiignados el numero y la sala no cambian, son de lectura
+data class Sala(val numero: Int = 1, val peligro: Peligro) {
 
     // Función de test
     fun test() {
