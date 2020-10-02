@@ -39,6 +39,17 @@ object Moria {
     // Lista de salas
     private var salas = mutableListOf<Sala>()
 
+    // Voy a programar la cola FIFO usando extensiín, si nlo quieres hacer por eherencia mira la rama TDA
+    // Encolar, siempre añadimos al final de la cola
+    fun MutableList<Sala>.encolar(sala: Sala) {
+        this.add(sala)
+    }
+
+    // Desencolar añadimos al princpio de la cola
+    fun MutableList<Sala>.desencolar(): Sala {
+        return this.removeAt(0)
+    }
+
     // Variables de ejecución
     private lateinit var salaActual: Sala
     private var estado = CONTINUAR
@@ -64,8 +75,8 @@ object Moria {
         // Como es Fifo añadimos siempre al final
         for (i in 1..MAX_SALAS) {
             when (Random.nextInt(1, 4)) {
-                1 -> salas.add(Sala(i, Magico(poder = Random.nextInt(1, MAX_SALA_MALIGNO))))
-                2 -> salas.add(
+                1 -> salas.encolar(Sala(i, Magico(poder = Random.nextInt(1, MAX_SALA_MALIGNO))))
+                2 -> salas.encolar(
                     Sala(
                         i,
                         Accion(
@@ -74,7 +85,7 @@ object Moria {
                         )
                     )
                 )
-                3 -> salas.add(Sala(i, Habilidad()))
+                3 -> salas.encolar(Sala(i, Habilidad()))
             }
         }
     }
@@ -103,19 +114,9 @@ object Moria {
         }
     }
 
-    private fun accionElfo(): Boolean {
-        println("Elfo entra en acción")
-        return true
-    }
-
-    private fun accionMago(): Boolean {
-        println("Mago entra en acción")
-        return true
-    }
-
     private fun entrarSala() {
-        // Eliminamos como la primera porque es una estructura FIFO
-        this.salaActual = salas.removeAt(0)
+        // Eliminamos como la primera porque es una estructura FIFO, 
+        this.salaActual = salas.desencolar()
         println("--> Entrando en la sala nº: ${this.salaActual.numero}. Es del tipo: ${this.salaActual.peligro.tipo}")
     }
 
