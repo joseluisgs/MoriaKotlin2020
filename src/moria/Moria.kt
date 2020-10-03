@@ -47,7 +47,7 @@ object Moria {
     private lateinit var legolas: Personaje
     private lateinit var frodo: Personaje
 
-    // Lista de salas. Usamos esta clase y no mutableLiosOf porque es una extensión más óptima para este problema
+    // Lista de salas. Usamos esta clase y no mutableListOf porque es una extensión más óptima para este problema
     // Programamos la cola FIFO usando funciones de extensión para optmizar las llamadas
     // https://kotlinlang.org/docs/reference/extensions.html
     // Si quieres verlo con herencia consulta la rama TDA
