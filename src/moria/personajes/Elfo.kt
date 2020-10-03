@@ -50,6 +50,7 @@ class Elfo(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
         }
     }
 
+
     private fun recogerFlechas(flechas: Int) {
         println("--> $nombre recoge $flechas flechas de la sala")
         this.recargarCarcaj(flechas)

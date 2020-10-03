@@ -16,12 +16,18 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
-// Definimos Moria como Object y de esta manera implementamos el singleton
-// https://blog.mindorks.com/how-to-create-a-singleton-class-in-kotlin
-// https://refactoring.guru/es/design-patterns/singleton
+/**
+ * Moria es nuestra clase principal. Actúa como controlador
+ * Se crea como singleton para asegurar que solo hay una instancia (opcional)
+ * Es la fachada de nuestro problema
+ * https://refactoring.guru/es/design-patterns/singleton
+ * https://blog.mindorks.com/how-to-create-a-singleton-class-in-kotlin
+ * https://refactoring.guru/es/design-patterns/facade
+ */
 object Moria {
-    // Constantes del sistema.
-    // Parametrización
+    /**
+     * Constantes del sistema para tener parametrizado su ejecución y no mezclada en el código
+     */
     private const val MAX_ENERGIA = 30
     private const val MAX_FLECHAS = 10
     private const val MAX_SALAS = 36
@@ -39,16 +45,25 @@ object Moria {
     private lateinit var legolas: Personaje
     private lateinit var frodo: Personaje
 
-    // Lista de salas
-    private var salas = ArrayDeque<Sala>() // mutableListOf
+    // Lista de salas. Usamos esta clase y no mutableLiosOf porque es una extensión más óptima para este problema
+    // Programamos la cola FIFO usando funciones de extensión para optmizar las llamadas
+    // Si quieres verlo con herencia consulta la rama TDA
+    private var salas = ArrayDeque<Sala>()
 
-    // Voy a programar la cola FIFO usando extensiín, si nlo quieres hacer por eherencia mira la rama TDA
-    // Encolar, siempre añadimos al final de la cola
+    /**
+     * FIFO. Encolamos al final
+     * @receiver ArrayDeque<Sala> Lista de salas
+     * @param sala Sala a encolar
+     */
     private fun ArrayDeque<Sala>.encolar(sala: Sala) {
         this.add(sala)
     }
 
-    // Desencolar añadimos al princpio de la cola
+    /**
+     * FIFO. Desencolamos al principio
+     * @receiver ArrayDeque<Sala> lista de salas
+     * @return Sala sala a desencolar
+     */
     private fun ArrayDeque<Sala>.desencolar(): Sala {
         return this.removeAt(0)
     }
@@ -57,15 +72,19 @@ object Moria {
     private lateinit var salaActual: Sala
     private var estado = VIVOS
 
-    // Me gusta definir las cosas en el init para evitar ensuciar el código
-    // a diferencia con constructor es que este esta pensado para tareas mas "cargadas" y una vez creado el objeto
-    // Le asigna los valores que queramos
+    /**
+     *  Me gusta definir las cosas en el init para evitar ensuciar el código
+     *  diferencia con constructor es que este esta pensado para tareas mas "cargadas" y una vez creado el objet
+     *  Le asigna los valores que queramos
+     */
     init {
         initPersonajes()
         initSalas()
     }
 
-    // Inicia los personajes
+    /**
+     * Iniciamos los personajes
+     */
     private fun initPersonajes() {
         // Como vemos estamos realizando una inyección de dependencias usando agragaciones con objetos asbtractos para objeto
         gandalf = Mago("Gandalf", true, Vara(energia = MAX_ENERGIA))
@@ -73,7 +92,9 @@ object Moria {
         frodo = Hobbit(nombre = "Frodo", vivo = true, objeto = Anillo())
     }
 
-    // Inicia la salas
+    /**
+     * Iniciamos las salas
+     */
     private fun initSalas() {
         // Como es Fifo añadimos siempre al final
         for (i in 1..MAX_SALAS) {
@@ -93,8 +114,11 @@ object Moria {
         }
     }
 
-    // función de ejecución
+    /**
+     * Método principal de ejecución
+     */
     fun run() {
+        // Presentamos
         presentacion()
         // mientras haya salas o no hayamos terminado
         while (salas.size >= 1 && estado == VIVOS) {
@@ -107,6 +131,10 @@ object Moria {
         informe()
     }
 
+    /**
+     * Analiza la sala e indica quién debe actuar
+     * @return Boolean True si continuar, false si hemos caído en la sala
+     */
     private fun analizarActuar(): Boolean {
         // Podemos usar el casting con la variable tipo pero mejor hacemos casting
         return when (this.salaActual.peligro) {
@@ -117,12 +145,18 @@ object Moria {
         }
     }
 
+    /**
+     * Desencolamos una sala de la lista
+     */
     private fun entrarSala() {
         // Eliminamos como la primera porque es una estructura FIFO, 
         this.salaActual = salas.desencolar()
         println("*** Entrando en la sala nº: ${this.salaActual.numero}. Es del tipo: ${this.salaActual.peligro.tipo}")
     }
 
+    /**
+     * Mensajes de presentación y entradas en el fichero de historias de ejecución
+     */
     private fun presentacion() {
         val dateTime = LocalDateTime.now()
         val momento = dateTime.format(DateTimeFormatter.ofPattern("dd/M/y H:m:ss"))
@@ -132,6 +166,9 @@ object Moria {
         File("moria.txt").appendText("$mensaje el $momento\n")
     }
 
+    /**
+     * Informe final en pantalla y en el fichero de historias de ejecución
+     */
     private fun informe() {
         val dateTime = LocalDateTime.now()
         val momento = dateTime.format(DateTimeFormatter.ofPattern("dd/M/y H:m:ss"))

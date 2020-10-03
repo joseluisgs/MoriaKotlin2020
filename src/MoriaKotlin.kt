@@ -3,11 +3,15 @@
 // importamos la clase principal
 import moria.Moria
 
+/**
+ * Punto de entrada a nuestro programa
+ */
 fun main() {
     println("*** ¡BIENVENIDOS A MORIA! ***")
     println()
-    // Declaramos la clase principal, usando singleton
+    // Declaramos la clase principal, usando singleton y ademas es nuestro patron fachada
     // https://refactoring.guru/es/design-patterns/singleton
+    // https://refactoring.guru/es/design-patterns/facade
     //Moria.test()
     Moria.run()
     println()
