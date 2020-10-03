@@ -6,6 +6,8 @@ import moria.utils.Utils
 
 /**
  * Clase personaje, punto de partida de la herencia. Como no instanciamos es asbtract y no open
+ * Con ella estamos implementado una plantilla de comportamiento
+ * https://refactoring.guru/es/design-patterns/template-method
  * @property nombre String nombre del personaje
  * @property vivo Boolean si está vivo (true) o muerto (false)
  * @property objeto Objeto Objeto que porta

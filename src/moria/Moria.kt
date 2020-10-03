@@ -40,13 +40,16 @@ object Moria {
     private const val MUERTOS = false
 
     // Variables de Moria, con lateint indicamos que las inicializaremos fuera del int o de la declaracion
-    // Personajes
+    // Personajes, son abstract y luego los iniciamos con el tipo concreto (polimorfismo)
+    // es una forma simplificada y reducida de apliacar una factoria
+    // https://refactoring.guru/es/design-patterns/factory-method
     private lateinit var gandalf: Personaje
     private lateinit var legolas: Personaje
     private lateinit var frodo: Personaje
 
     // Lista de salas. Usamos esta clase y no mutableLiosOf porque es una extensión más óptima para este problema
     // Programamos la cola FIFO usando funciones de extensión para optmizar las llamadas
+    // https://kotlinlang.org/docs/reference/extensions.html
     // Si quieres verlo con herencia consulta la rama TDA
     private var salas = ArrayDeque<Sala>()
 
@@ -87,6 +90,9 @@ object Moria {
      */
     private fun initPersonajes() {
         // Como vemos estamos realizando una inyección de dependencias usando agragaciones con objetos asbtractos para objeto
+        // de nuevo aplicamos polimorfismo en nuestro intento de hacer una factoria de manera reducida
+        // Ademas aplicamos inyección de dependencias para no acoplar el tipo de objetos
+        // https://www.arquitecturajava.com/el-patron-de-inyeccion-de-dependencia/
         gandalf = Mago("Gandalf", true, Vara(energia = MAX_ENERGIA))
         legolas = Elfo("Legolas", true, Carcaj(cantidad = MAX_FLECHAS))
         frodo = Hobbit(nombre = "Frodo", vivo = true, objeto = Anillo())
@@ -96,7 +102,7 @@ object Moria {
      * Iniciamos las salas
      */
     private fun initSalas() {
-        // Como es Fifo añadimos siempre al final
+        // Como es Fifo añadimos siempre al final. de nuevo inyectamos la dependencia del peligro
         for (i in 1..MAX_SALAS) {
             when (Random.nextInt(1, 4)) {
                 1 -> salas.encolar(Sala(i, Magico(poder = Random.nextInt(1, MAX_SALA_MALIGNO))))
