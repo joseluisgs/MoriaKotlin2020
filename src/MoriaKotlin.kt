@@ -4,7 +4,8 @@
 import moria.Moria
 
 /**
- * Punto de entrada a nuestro programa
+ * Punto de entrada a nuestro programa. Además es nuestra fachada
+ *  https://refactoring.guru/es/design-patterns/facade
  */
 fun main() {
     println("*** ¡BIENVENIDOS A MORIA! ***")
