@@ -7,16 +7,35 @@ import moria.peligros.Peligro
 import moria.utils.Utils
 import kotlin.random.Random
 
+/**
+ * Clase Mago
+ * Hereda de Personaje
+ * Implementa SoyMago
+ * @constructor
+ */
 class Mago(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vivo, objeto), SoyMago {
 
+    /**
+     * Reccarga la vara
+     * @param energia Int energía de recarga
+     */
     override fun recargarVara(energia: Int) {
         (this.objeto as Vara).energia -= energia
     }
 
+    /**
+     * Muestra el poder de la vara
+     * @return Int Valor del poder de la vara
+     */
     override fun poderVara(): Int {
         return (this.objeto as Vara).energia
     }
 
+    /**
+     * Indica si ha ganado su reto
+     * @param limite Int limite de prbabilidad para superar
+     * @return Boolean true lo ha conseguido, false, no lo ha conseguido
+     */
     private fun ganar(limite: Int): Boolean {
         println("--> $nombre intenta ganar al peligro :(")
         val ganar = Utils.probabilidad(limite, 100)
@@ -29,6 +48,11 @@ class Mago(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
         }
     }
 
+    /**
+     * Acción principal de Mago
+     * @param peligro Peligro tipo de peligro
+     * @return Boolean True->> Lo consigue. Fase ->> Fracaso
+     */
     override fun accion(peligro: Peligro): Boolean {
         println("--> $nombre entra en acción")
         // Recargamos la vara entre 1 y 10

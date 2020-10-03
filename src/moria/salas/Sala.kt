@@ -1,7 +1,13 @@
 package moria.salas
 
 import moria.peligros.Peligro
-// una vez asiignados el numero y la sala no cambian, son de lectura
+
+/**
+ * Clase sala. La definimos como un POJO para tener sus métodos típicos usando data
+ * @property numero Int numero de la sala
+ * @property peligro Peligro tipo de peligro asignado
+ * @constructor
+ */
 data class Sala(val numero: Int = 1, val peligro: Peligro) {
 
     // Función de test

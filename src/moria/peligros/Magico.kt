@@ -1,6 +1,10 @@
 package moria.peligros
 
-// Asigno el valor por defecto si no me llega en el costructor
+/**
+ * Peligro Mágico
+ * @property poder Int Poder maligno asociado
+ * @constructor
+ */
 class Magico(tipo: String = "Mágico", var poder: Int = 1) : Peligro(tipo) {
 
 //    override fun test() {
