@@ -21,11 +21,11 @@ class Mago(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
         println("--> $nombre intenta ganar al peligro :(")
         val ganar = Utils.probabilidad(limite, 100)
         // Si ganamos peligro superado
-        if (ganar) return this.peligroSuperado()
+        return if (ganar) this.peligroSuperado()
         // Si no huimos
         else {
             println("--> $nombre no ha superado el peligro :(")
-            return this.huir()
+            this.huir()
         }
     }
 

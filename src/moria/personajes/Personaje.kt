@@ -13,13 +13,13 @@ abstract class Personaje(val nombre: String, var vivo: Boolean = true, var objet
     fun huir(): Boolean {
         println("--> Intentando huir :(")
         val sorteo = Utils.probabilidad(PROB_HUIR, 100)
-        if (sorteo) {
+        return if (sorteo) {
             println("--> Hemos tenido suerte y podemos huir :)")
-            return true
+            true
         } else {
             println("--> No hemos tenido suerte y no podemos huir :_(")
             vivo = false
-            return false
+            false
         }
     }
 

@@ -35,14 +35,12 @@ class Elfo(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
             println("--> No tenemos suficiente flechas. Los enemigos nos superan :(")
             // matamos a los enemigos con todas
             matarEnemigos((this.objeto as Carcaj).cantidad)
-            if (this.huir()) {
+            return if (this.huir()) {
                 // recogemos las flechas
                 this.recogerFlechas(peligro.flechas)
                 // println ("Mis flechas: ${(this.objeto as Carcaj).cantidad}")
-                return true
-            } else {
-                return false
-            }
+                true
+            } else false
         }
     }
 
@@ -53,7 +51,7 @@ class Elfo(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
     }
 
     private fun recogerFlechas(flechas: Int) {
-        println("--> $nombre recoge $flechas de la sala")
+        println("--> $nombre recoge $flechas flechas de la sala")
         this.recargarCarcaj(flechas)
     }
 

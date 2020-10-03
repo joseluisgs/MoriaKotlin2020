@@ -24,12 +24,12 @@ class Hobbit(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, 
 
     private fun superarPeligroHabilidad(limite: Int): Boolean {
         val superar = Utils.probabilidad(limite, 100)
-        if (superar) {
+        return if (superar) {
             this.quitarseAnillo()
-            return this.peligroSuperado()
+            this.peligroSuperado()
         } else {
             println("--> $nombre no ha superado el peligro :(")
-            return this.huir()
+            this.huir()
         }
     }
 
@@ -37,16 +37,16 @@ class Hobbit(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, 
         println("--> $nombre entra en acción")
         // Tomamos una decisión (50%)
         val decision = this.decidir()
-        if (decision) {
+        return if (decision) {
             println("--> $nombre decide no ponerse el anillo")
             // Nos ponemos el anillo
             this.ponerseAnillo()
             // Lo superamos el 90% de los casos
-            return this.superarPeligroHabilidad(90)
+            this.superarPeligroHabilidad(90)
         } else {
             println("--> $nombre decide no ponerse el anillo")
             // Solo lo superamos en el 20% de los casos
-            return this.superarPeligroHabilidad(20)
+            this.superarPeligroHabilidad(20)
         }
     }
 

@@ -44,12 +44,12 @@ object Moria {
 
     // Voy a programar la cola FIFO usando extensiín, si nlo quieres hacer por eherencia mira la rama TDA
     // Encolar, siempre añadimos al final de la cola
-    fun ArrayDeque<Sala>.encolar(sala: Sala) {
+    private fun ArrayDeque<Sala>.encolar(sala: Sala) {
         this.add(sala)
     }
 
     // Desencolar añadimos al princpio de la cola
-    fun ArrayDeque<Sala>.desencolar(): Sala {
+    private fun ArrayDeque<Sala>.desencolar(): Sala {
         return this.removeAt(0)
     }
 
@@ -67,7 +67,7 @@ object Moria {
 
     // Inicia los personajes
     private fun initPersonajes() {
-        // Como vemos estamos realizando una inyección de dependencias usando agragaciones con objetos asbtractos
+        // Como vemos estamos realizando una inyección de dependencias usando agragaciones con objetos asbtractos para objeto
         gandalf = Mago("Gandalf", true, Vara(energia = MAX_ENERGIA))
         legolas = Elfo("Legolas", true, Carcaj(cantidad = MAX_FLECHAS))
         frodo = Hobbit(nombre = "Frodo", vivo = true, objeto = Anillo())
@@ -104,16 +104,16 @@ object Moria {
             estado = analizarActuar()
         }
         // Imprimimos el informe
-        informeFinal()
+        informe()
     }
 
     private fun analizarActuar(): Boolean {
         // Podemos usar el casting con la variable tipo pero mejor hacemos casting
-        when (this.salaActual.peligro) {
-            is Magico -> return gandalf.accion(this.salaActual.peligro)
-            is Accion -> return legolas.accion(this.salaActual.peligro)
-            is Habilidad -> return frodo.accion(this.salaActual.peligro)
-            else -> return MUERTOS
+        return when (this.salaActual.peligro) {
+            is Magico -> gandalf.accion(this.salaActual.peligro)
+            is Accion -> legolas.accion(this.salaActual.peligro)
+            is Habilidad -> frodo.accion(this.salaActual.peligro)
+            else -> MUERTOS
         }
     }
 
@@ -123,7 +123,7 @@ object Moria {
         println("*** Entrando en la sala nº: ${this.salaActual.numero}. Es del tipo: ${this.salaActual.peligro.tipo}")
     }
 
-    fun presentacion() {
+    private fun presentacion() {
         val dateTime = LocalDateTime.now()
         val momento = dateTime.format(DateTimeFormatter.ofPattern("dd/M/y H:m:ss"))
         val mensaje = "*** ABRIENDO LAS PUERTAS DE MORIA ***"
@@ -132,7 +132,7 @@ object Moria {
         File("moria.txt").appendText("$mensaje el $momento\n")
     }
 
-    private fun informeFinal() {
+    private fun informe() {
         val dateTime = LocalDateTime.now()
         val momento = dateTime.format(DateTimeFormatter.ofPattern("dd/M/y H:m:ss"))
         println("--------------")
@@ -150,33 +150,33 @@ object Moria {
     }
 
     // funcion de test
-    fun test() {
-        println("Soy Moria")
-        gandalf.test()
-        gandalf.objeto.test()
-        legolas.test()
-        legolas.objeto.test()
-        frodo.test()
-        frodo.objeto.test()
-
-        val mago = Mago("El Mago", vivo = true, Vara())
-        mago.test()
-        mago.recargarVara(20)
-        mago.objeto.test()
-        val elfo = Elfo("El Elfo", vivo = true, Carcaj())
-        elfo.test()
-        elfo.recargarCarcaj(10)
-        elfo.objeto.test()
-        val hobbit = Hobbit("El Hobbit", vivo = true, Anillo())
-        hobbit.test()
-        hobbit.ponerseAnillo()
-        hobbit.objeto.test()
-
-
-        salas.forEach {
-            it.test()
-            it.peligro.test()
-            println(hobbit.huir())
-        }
-    }
+//    fun test() {
+//        println("Soy Moria")
+//        gandalf.test()
+//        gandalf.objeto.test()
+//        legolas.test()
+//        legolas.objeto.test()
+//        frodo.test()
+//        frodo.objeto.test()
+//
+//        val mago = Mago("El Mago", vivo = true, Vara())
+//        mago.test()
+//        mago.recargarVara(20)
+//        mago.objeto.test()
+//        val elfo = Elfo("El Elfo", vivo = true, Carcaj())
+//        elfo.test()
+//        elfo.recargarCarcaj(10)
+//        elfo.objeto.test()
+//        val hobbit = Hobbit("El Hobbit", vivo = true, Anillo())
+//        hobbit.test()
+//        hobbit.ponerseAnillo()
+//        hobbit.objeto.test()
+//
+//
+//        salas.forEach {
+//            it.test()
+//            it.peligro.test()
+//            println(hobbit.huir())
+//        }
+//    }
 }

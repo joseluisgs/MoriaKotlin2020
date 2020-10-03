@@ -5,8 +5,8 @@ import moria.peligros.Peligro
 data class Sala(val numero: Int = 1, val peligro: Peligro) {
 
     // Función de test
-    fun test() {
-        println("Sala: $numero y mi objeto es: ${peligro.tipo}")
-    }
+//    fun test() {
+//        println("Sala: $numero y mi objeto es: ${peligro.tipo}")
+//    }
 
 }

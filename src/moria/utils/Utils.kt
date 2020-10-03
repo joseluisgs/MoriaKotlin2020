@@ -7,7 +7,7 @@ class Utils {
     companion object {
         fun probabilidad(limite: Int, max: Int): Boolean {
             val sorteo = Random.nextInt(max)
-            println("probabilid $sorteo y mi limite es $limite")
+            // println("probabilid $sorteo y mi limite es $limite")
             return sorteo <= limite
         }
     }
