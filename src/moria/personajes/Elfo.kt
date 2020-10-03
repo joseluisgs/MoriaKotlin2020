@@ -7,7 +7,7 @@ import moria.peligros.Peligro
 
 /**
  * Clase Elfo.
- * Hereda de persona
+ * Hereda de Personaje
  * Implementa SoyElfo
  * @constructor
  */
