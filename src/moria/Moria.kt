@@ -19,25 +19,35 @@ import kotlin.random.Random
 /**
  * Moria es nuestra clase principal. Actúa como controlador
  * Se crea como singleton para asegurar que solo hay una instancia (opcional)
- * Es la fachada de nuestro problema
  * https://refactoring.guru/es/design-patterns/singleton
  * https://blog.mindorks.com/how-to-create-a-singleton-class-in-kotlin
+ * Tambien se puede implementar como patrón builder (parámetros)
+ * https://refactoring.guru/es/design-patterns/builder
+ * Es la fachada de nuestro problema
  * https://refactoring.guru/es/design-patterns/facade
  */
-object Moria {
+class Moria private constructor (
+    // No es necesario fijar los valores aquí si usamos el Build, porque los tiene él
+    private val MAX_ENERGIA: Int = 30,
+    private val MAX_FLECHAS: Int = 10,
+    private val MAX_SALAS: Int = 36,
+    private val MAX_SALA_MALIGNO: Int = 10,
+    private val MAX_SALA_FLECHAS: Int = 5,
+    private val MAX_SALA_ENEMIGOS: Int = 10
+) {
     /**
      * Constantes del sistema para tener parametrizado su ejecución y no mezclada en el código
      */
-    private const val MAX_ENERGIA = 30
-    private const val MAX_FLECHAS = 10
-    private const val MAX_SALAS = 36
-    private const val MAX_SALA_MALIGNO = 10
-    private const val MAX_SALA_FLECHAS = 5
-    private const val MAX_SALA_ENEMIGOS = 10
+//    private const val MAX_ENERGIA = 30
+//    private const val MAX_FLECHAS = 10
+//    private const val MAX_SALAS = 36
+//    private const val MAX_SALA_MALIGNO = 10
+//    private const val MAX_SALA_FLECHAS = 5
+//    private const val MAX_SALA_ENEMIGOS = 10
 
     // Condiciones del run
-    private const val VIVOS = true
-    private const val MUERTOS = false
+    private val VIVOS = true
+    private val MUERTOS = false
 
     // Variables de Moria, con lateint indicamos que las inicializaremos fuera del int o de la declaracion
     // Personajes, son abstract y luego los iniciamos con el tipo concreto (polimorfismo)
@@ -190,6 +200,43 @@ object Moria {
         mensaje += "*** CERRANDO LAS PUERTAS DE MORIA ***"
         println(mensaje)
         File("moria.txt").appendText("$mensaje el $momento\n\n", Charsets.UTF_8)
+    }
+
+    /**
+     * Aplicamos el patrón Builder
+     * https://refactoring.guru/es/design-patterns/builder
+     * https://www.baeldung.com/kotlin-builder-pattern
+     * @property totalSalas Int? Total de salas en Moria
+     * @property totalPoderVara Int? Poder inicial de la vara
+     * @property totalFlechasCarcaj Int? Número de flechas que puede portar el carcaj
+     * @property totalPoderMalignoSala Int? Total de poder maligno de una sala
+     * @property totalFlechasSala Int? Total de flechas a encontrar en una sala
+     * @property totalEnemigosSala Int? Total de Enemigos en una sala
+     * @constructor
+     */
+    data class Builder(
+        var totalSalas: Int = 36,
+        var totalPoderVara: Int = 30,
+        var flechasInicialesCarcaj: Int = 10,
+        var totalPoderMalignoSala: Int = 10,
+        var totalFlechasSala: Int = 5,
+        var totalEnemigosSala : Int = 10,
+    ){
+        fun totalSalas(numSalas: Int) = apply { this.totalSalas= numSalas }
+        fun totalPoderVara(poderVara: Int) = apply { this.totalPoderVara= poderVara }
+        fun flechasInicialesCarcaj(numFlechas: Int) = apply { this.flechasInicialesCarcaj= numFlechas }
+        fun totalPoderMalignoSala(poderMaligno: Int) = apply { this.totalPoderMalignoSala = poderMaligno }
+        fun totalFlechasSala(numFlechas: Int) = apply { this.totalFlechasSala = numFlechas }
+        fun totalEnemigosSala(numEnemigos: Int) = apply { this.totalEnemigosSala = numEnemigos }
+
+        fun build() = Moria(
+            MAX_ENERGIA = totalPoderVara,
+            MAX_FLECHAS = flechasInicialesCarcaj,
+            MAX_SALAS = totalSalas,
+            MAX_SALA_MALIGNO = totalPoderMalignoSala,
+            MAX_SALA_FLECHAS = totalFlechasSala,
+            MAX_SALA_ENEMIGOS = totalEnemigosSala
+        )
     }
 
     // funcion de test

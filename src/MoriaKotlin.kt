@@ -10,11 +10,21 @@ import moria.Moria
 fun main() {
     println("*** ¡BIENVENIDOS A MORIA! ***")
     println()
-    // Declaramos la clase principal, usando singleton y ademas es nuestro patron fachada
+    // Declaramos la clase principal, usando singleton (opcional) Builder y ademas es nuestro patron fachada
+    // https://refactoring.guru/es/design-patterns/builder
     // https://refactoring.guru/es/design-patterns/singleton
     // https://refactoring.guru/es/design-patterns/facade
     //Moria.test()
-    Moria.run()
+    val moria = Moria.Builder()
+        .totalSalas(36)
+        .totalPoderVara(30)
+        .flechasInicialesCarcaj(10)
+        .totalPoderMalignoSala(10)
+        .totalFlechasSala(5)
+        .totalEnemigosSala(10)
+        .build()
+
+    moria.run()
     println()
     println("*** FIN ***")
 }
