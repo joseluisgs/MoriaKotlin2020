@@ -36,7 +36,7 @@ class Elfo(nombre: String, vivo: Boolean, objeto: Objeto) : Personaje(nombre, vi
         println("--> $nombre entra en acción")
         // Tenemos flechas (le restamos a los enemigos
         val estado = ((this.objeto as Carcaj).cantidad) - ((peligro as Accion).enemigos)
-        println("Mis flechas: ${(this.objeto as Carcaj).cantidad} - Mis enemigos ${peligro.enemigos}")
+        // println("Mis flechas: ${(this.objeto as Carcaj).cantidad} - Mis enemigos ${peligro.enemigos}")
         if (estado >= 0) {
             println("--> Tenemos más flechas que enemigos :)")
             // Matamos
