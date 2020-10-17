@@ -4,6 +4,7 @@
 
 [![Kotlin](https://img.shields.io/badge/Code-Kotlin-blue)](https://kotlinlang.org/)
 [![LISENCE](https://img.shields.io/badge/Lisence-MIT-red)]()
+![GitHub](https://img.shields.io/github/last-commit/joseluisgs/kotlin-basico2020)
 
 ## Descripción
 Se ha implementado el problema de una de las muchas formas posibles y además aplicando distintas técnicas con Kotlin.
@@ -23,8 +24,6 @@ Debes tener en cuenta que se puede hacer de diferente manera y algunas cosas est
 
 - [GitHub](https://github.com/joseluisgs) ![GitHub](https://img.shields.io/github/followers/joseluisgs?style=social)
 
-![GitHub](https://img.shields.io/github/last-commit/joseluisgs/kotlin-basico2020)
-
 ## Licencia
 
-Este proyecto esta licenciado bajo licencia **MIT**, si desea saber más, visite el fichero [LICENSE](https://github.com/joseluisgs/MoriaKotlin2020/blob/master/LISENCE) para su uso docente y educativo.
+Este proyecto esta licenciado bajo licencia **MIT**, si desea saber más, visite el fichero [LICENSE](https://github.com/joseluisgs/MoriaKotlin2020/blob/master/LICENSE) para su uso docente y educativo.
